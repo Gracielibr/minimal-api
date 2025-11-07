@@ -57,6 +57,16 @@ public class Startup
         });
 
         services.AddAuthorization();
+
+        services.AddCors(options =>
+        {
+            options.AddDefaultPolicy(builder =>
+            {
+                builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+            });
+        });
         
 
         services.AddScoped<IAdministradorServico, AdministradorServico>();
@@ -120,6 +130,8 @@ public class Startup
 
         app.UseAuthentication();
         app.UseAuthorization();
+
+        app.UseCors();
         
         app.UseEndpoints(endpoints =>
         {

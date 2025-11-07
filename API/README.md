@@ -100,3 +100,78 @@ O que está sendo testado: AdministradorServico: Incluir; BuscaPorId; Login; Tod
 VeiculoServico: Incluir; BuscarPorId; Atualizar; Apagar; Todos com paginação; Todos com filtro por nome; Todos com filtro por marca; Todos com filtros combinados;
 
 Entidades: Administrador (get/set properties); Veiculo (get/set properties);
+
+
+
+
+Relatório de Configuração do Ambiente de Desenvolvimento
+
+Objetivo: Configurar um ambiente remoto completo em um servidor Ubuntu na nuvem (AWS) para o desenvolvimento e execução de uma API minimalista em .NET 9, incluindo o banco de dados MySQL.
+
+Procedimentos Realizados:
+
+Conexão e Acesso ao Servidor:
+
+Foi estabelecida uma conexão segura com o servidor Ubuntu utilizando o protocolo SSH (Secure Shell) e uma chave de autenticação do tipo PEM (minimal-api.pem).
+
+O comando utilizado para acesso foi: ssh -i minimal-api.pem ubuntu@13.51.250.207.
+
+Atualização do Sistema Operacional:
+
+O sistema Ubuntu foi atualizado para garantir que todos os pacotes de software e correções de segurança mais recentes estivessem instalados.
+
+Foram executados os comandos apt update (para atualizar a lista de pacotes) e apt upgrade (para instalar as atualizações).
+
+Instalação do .NET 9:
+
+O SDK (Software Development Kit) do .NET 9 foi instalado para permitir a compilação e execução de aplicações.
+
+Utilizou-se o método recomendado para Ubuntu, adicionando o repositório oficial de backports com o comando add-apt-repository ppa:dotnet/backports e em seguida instalando o pacote dotnet-sdk-9.0.
+
+A instalação foi confirmada com sucesso através do comando dotnet --version, que retornou a versão 9.0.111.
+
+Instalação e Configuração do MySQL:
+
+O servidor de banco de dados MySQL (versão 8.0.43) foi instalado via comando apt install mysql-server.
+
+O serviço do MySQL foi iniciado automaticamente após a instalação.
+
+Para garantir a compatibilidade com a aplicação, o método de autenticação do usuário root foi alterado para o padrão mysql_native_password, definindo a senha de acesso.
+
+Resultados Obtidos:
+O ambiente encontra-se totalmente configurado e operacional. Temos um servidor Ubuntu atualizado, com o .NET 9 devidamente instalado para desenvolvimento e um servidor MySQL funcionando, pronto para se conectar à aplicação.
+
+ Dica rápida do Vim:
+o - nova linha ABAIXO e modo inserção
+
+O - nova linha ACIMA e modo inserção
+
+i - modo inserção na posição atual
+
+ESC - sair do modo inserção
+
+:wq - salvar e sair
+
+Configuração Inicial do GitHub
+O primeiro passo foi configurar o Git no computador local. Foram definidos o nome de usuário e email através dos comandos git config, que são informações necessárias para identificar o autor dos commits. Essa configuração é fundamental para o controle de versão, pois todo commit realizado ficará associado a estas credenciais.
+
+Preparação do Servidor Ubuntu na AWS
+Foi provisionado um servidor Ubuntu 24.04 LTS na Amazon Web Services. A conexão segura foi estabelecida utilizando o protocolo SSH com autenticação por chave PEM, um método mais seguro que senhas tradicionais. A chave PEM funciona como uma identidade digital que comprova o direito de acesso ao servidor.
+
+Atualização do Sistema Operacional
+O sistema Ubuntu foi atualizado através dos comandos apt update e apt upgrade. Este processo é crucial para garantir que todos os pacotes de software estejam nas versões mais recentes, incluindo correções de segurança e melhorias de desempenho.
+
+Instalação do .NET 9
+O SDK do .NET 9 foi instalado utilizando o repositório oficial de backports da Ubuntu. Esta abordagem garante compatibilidade com o sistema operacional e acesso a atualizações futuras através do gerenciador de pacotes nativo. O SDK inclui todas as ferramentas necessárias para compilar, executar e publicar aplicações .NET.
+
+Configuração do MySQL
+O servidor de banco de dados MySQL foi instalado para armazenamento persistente de dados. Após a instalação, foi necessário ajustar o método de autenticação do usuário root para mysql_native_password, garantindo compatibilidade com a aplicação .NET.
+
+Implementação do Proxy Reverso com Nginx
+O servidor web Nginx foi instalado e configurado como proxy reverso. Esta arquitetura é importante porque o Nginx atua como intermediário entre os usuários externos e a aplicação .NET, oferecendo benefícios como balanceamento de carga, cache e maior segurança. A configuração direciona todas as requisições da porta 80 (HTTP padrão) para a porta 5237 onde a API .NET está executando.
+
+Clone do Repositório e Configuração da Aplicação
+O código-fonte da aplicação foi transferido do GitHub para o servidor através do comando git clone. Em seguida, as dependências do projeto foram restauradas usando dotnet restore, que baixa todos os pacotes NuGet necessários definidos no arquivo de projeto.
+
+Fluxo de Funcionamento
+Atualmente, quando um usuário acessa o endereço IP do servidor, o Nginx recebe a requisição na porta 80 e a encaminha para a aplicação .NET rodando na porta 5237. Esta arquitetura permite que a aplicação .NET foque apenas na lógica de negócio, enquanto o Nginx cuida de aspectos infraestruturais como SSL, compressão e segurança.
