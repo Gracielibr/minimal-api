@@ -107,4 +107,4 @@ dotnet run
 
 ## Documentação
 Para um guia técnico completo com passo a passo detalhado, soluções de problemas e explicações para iniciantes, acesse:  
-[README da Pasta API](./API/README-API.md)
+[README da Pasta API](https://github.com/Gracielibr/minimal-api/blob/main/API/README.md)
