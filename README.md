@@ -64,12 +64,15 @@ minimal-api/
 │   ├── 📂 Dominio/         # Entidades, DTOs, Interfaces
 │   ├── 📂 Servicos/        # Regras de negócio
 │   ├── 📂 Infraestrutura/  # DbContext e Migrations
-│   ├── 📄 Startup.cs       ⭐ Principal
-│   └── 📄 README-API.md    # Guia técnico
+│   ├── 📄 Program.cs                      # Ponto de entrada
+│   ├── 📄 Startup.cs                      # Configuração principal ⭐
+│   └── 📄 README-API.md                   # Guia técnico
 ├── 📂 Test/                # Testes unitários
-│   ├── 📂 Domain/          # Testes de entidades e serviços
-│   └── 📂 Requests/        # Testes de API
-└── 📄 README.md            # Este arquivo
+│   ├── 📂 Mocks/           # Implementações mockadas
+│   ├── 📂 Helpers/         # Configuração de testes
+│   ├── 📂 Requests/        # Testes de endpoints
+│   └── 📂 Domain/          # Testes de serviços
+└── 📄 README.md           # Documentação principal
 
 ```
 ## Arquitetura em Camadas
@@ -105,6 +108,9 @@ dotnet run
 
 ## Acesse: http://localhost:5237/swagger
 
-## Documentação
-Para um guia técnico completo com passo a passo detalhado, soluções de problemas e explicações para iniciantes, acesse:  
-[README da Pasta API](https://github.com/Gracielibr/minimal-api/blob/main/API/README.md)
+## Documentação Completa
+
+Para um guia técnico detalhado com explicações de arquitetura, 
+soluções de problemas e passo a passo educacional, acesse:
+
+[**Guia Técnico Detalhado**](./API/README.md))
