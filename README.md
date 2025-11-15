@@ -112,5 +112,4 @@ dotnet run
 
 Para um guia técnico detalhado com explicações de arquitetura, 
 soluções de problemas e passo a passo educacional, acesse:
-
-[**Guia Técnico Detalhado**](./API/README.md))
+[**Guia Técnico Detalhado**](./API/README.md)
