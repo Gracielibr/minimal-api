@@ -53,7 +53,7 @@ No terminal, dentro da pasta do projeto, deve utilizar o comando:
 Para entender melhor, quando cria o projeto utilizando o dotnet new web já vem com pacotes básicos e conforme precisa de mais coisas, adiciona mais pacotes via NuGet.
 
 ## 3. ESTRUTURA DO PROJETO
-
+```
 minimal-api/
 ├── 📂 API/                         # Projeto principal
 │   ├── 📂 Dominio/                 # Camada de domínio
@@ -84,7 +84,7 @@ minimal-api/
 │       ├── AdministradorServicoTest.cs
 │       └── VeiculoServicoTest.cs
 └── 📄 README.md                   # Documentação principal
-
+```
 ### Arquitetura da Solução
 
 #### Princípios Arquiteturais Aplicados
