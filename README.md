@@ -106,10 +106,11 @@ dotnet ef database update
 dotnet run
 ```
 
-## Acesse: http://localhost:5237/swagger
+### Acesse: http://localhost:5237/swagger
 
 ## Documentação Completa
 
 Para um guia técnico detalhado com explicações de arquitetura, 
 soluções de problemas e passo a passo educacional, acesse:
+
 [**Guia Técnico Detalhado**](./API/README.md)
