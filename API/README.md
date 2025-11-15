@@ -299,39 +299,50 @@ Foi provisionada uma instância EC2 (Elastic Compute Cloud) executando Ubuntu 24
 
 ### Passo a Passo do Deploy
 #### I. Acesso ao Servidor
+```
 bash
 `ssh -i minimal-api.pem ubuntu@13.51.250.207`
+```
 O acesso seguro é realizado via SSH utilizando par de chaves, garantindo autenticação criptografada com o servidor.
 
 #### II. Atualização do Sistema
+```
 bash
 `sudo apt update`
 `sudo apt upgrade`
+```
 Atualização completa do sistema operacional para garantir que todos os pacotes estejam nas versões mais recentes e seguras.
 
 #### III. Instalação do .NET 9
+```
 bash
 `sudo add-apt-repository ppa:dotnet/backports`
 `sudo apt install dotnet-sdk-9.0`
 `dotnet --version`
+ ```
 Instalação do runtime e SDK do .NET 9, necessário para executar aplicações desenvolvidas com esta versão do framework.
 
 #### IV. Configuração do MySQL
+```
 bash
 `sudo apt install mysql-server`
 `sudo systemctl start mysql`
 `sudo systemctl enable mysql`
+```
 Instalação e configuração do MySQL Server como banco de dados relacional para persistência dos dados da aplicação.
 
 #### V. Configuração do Nginx como Proxy Reverso
+
+```
 bash
 `sudo apt install nginx`
 `sudo systemctl start nginx`
 `sudo systemctl enable nginx`
+```
 Instalação do Nginx para atuar como proxy reverso, direcionando requisições da porta 80 (HTTP padrão) para a porta da aplicação.
 
 - **Configuração do proxy no Nginx**:
-
+```
 nginx
 server {
     listen 80;
@@ -348,13 +359,15 @@ server {
         proxy_set_header X-Forwarded-Proto $scheme;
     }
 }
-
+```
 #### VI. Deploy da Aplicação
+```
 bash
 `git clone https://github.com/Gracielibr/minimal-api.git`
 `cd minimal-api/API`
 `dotnet restore`
 `dotnet run`
+```
 Clone do repositório, restauração de dependências e execução da aplicação no servidor.
 
 #### Configurações de Segurança
@@ -371,7 +384,7 @@ Configuração do UFW (Uncomplicated Firewall) para restringir acesso não autor
 **Systemd Service** 
 
 Criação de serviço systemd para garantir que a aplicação execute continuamente e reinicie automaticamente em caso de falhas:
-
+```
 ini
 [Unit]
 Description=Minimal API Veiculos
@@ -387,21 +400,21 @@ RestartSec=10
 
 [Install]
 WantedBy=multi-user.target
-
+```
 **Logs da Aplicação**
 
 Configuração de rotação de logs para monitoramento da saúde da aplicação e detecção de problemas.
 
 #### Processo de Atualização
 Para atualizar a aplicação em produção:
-
+```
 bash
 `cd minimal-api/API`
 `git pull origin main`
 `dotnet restore`
 `dotnet build`
 `sudo systemctl restart minimal-api`
-
+```
 #### Resultado do Deploy
 **API em Produção**
   - URL Principal: http://13.51.250.207
